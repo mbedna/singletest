@@ -5,6 +5,10 @@ import org.junit.runner.notification.Failure;
 public class SingleJUnitTestRunner {
 	public static void main(String[] args) throws Exception {
 		String[] classAndMethod = args[0].split("#");
+        if (classAndMethod.length < 2) {
+            System.out.println("Test method not found.");
+            return;
+        }
 		System.out.println("class: " + classAndMethod[0] + ", method: " + classAndMethod[1]);
 		Request request = Request.method(Class.forName(classAndMethod[0]), classAndMethod[1]);
 		Result result = new JUnitCore().run(request);
